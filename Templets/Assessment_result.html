@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assessment Result - TalentTrack AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-card {
+            width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .score {
+            font-size: 55px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .percentage {
+            font-size: 25px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            margin: 5px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            background: #667eea;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #5568d9;
+        }
+
+        .btn-secondary {
+            background: #764ba2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="result-card">
+
+        <div class="icon">🎯</div>
+
+        <h1>Assessment Completed!</h1>
+
+        <p class="subtitle">
+            TalentTrack AI - Skill Assessment
+        </p>
+
+        <div class="score">
+            {{ score }} / {{ total_questions }}
+        </div>
+
+        <div class="percentage">
+            {{ "%.1f"|format(percentage) }}%
+        </div>
+
+        {% if percentage >= 80 %}
+
+            <p class="message">
+                🌟 Excellent! You have strong skills.
+            </p>
+
+        {% elif percentage >= 60 %}
+
+            <p class="message">
+                👍 Good job! Keep improving your skills.
+            </p>
+
+        {% elif percentage >= 40 %}
+
+            <p class="message">
+                📚 Average performance. More practice will help.
+            </p>
+
+        {% else %}
+
+            <p class="message">
+                💪 Keep learning and practicing. You can improve!
+            </p>
+
+        {% endif %}
+
+        <a href="/skill-assessment" class="btn">
+            Retake Assessment
+        </a>
+
+        <a href="/dashboard" class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>

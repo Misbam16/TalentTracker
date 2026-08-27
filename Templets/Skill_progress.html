@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Progress - TalentTrack AI</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6ff;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4f46e5;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 25px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #4f46e5;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            font-size: 13px;
+        }
+
+        .overall {
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        progress {
+            width: 100%;
+            height: 25px;
+        }
+
+        progress::-webkit-progress-bar {
+            background: #e5e7eb;
+            border-radius: 20px;
+        }
+
+        progress::-webkit-progress-value {
+            background: #4f46e5;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>📊 Skill Progress</h1>
+
+        <p class="center">
+            Track your current technical skills and assessment performance.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🐍 Python Skill</h2>
+
+        <div class="skill-name">
+            {{ python_skill }}%
+        </div>
+
+        <progress value="{{ python_skill }}" max="100"></progress>
+        <p>{{ python_skill }}%</p>
+
+        <h2>☕ Java Skill</h2>
+
+        <div class="skill-name">
+            {{ java_skill }}%
+        </div>
+
+        <progress value="{{ java_skill }}" max="100"></progress>
+        <p>{{ java_skill }}%</p>
+
+        <h2>🗄️ SQL Skill</h2>
+
+        <div class="skill-name">
+            {{ sql_skill }}%
+        </div>
+
+        <progress value="{{ sql_skill }}" max="100"></progress>
+        <p>{{ sql_skill }}%</p>
+
+        <h2>📝 Assessment Score</h2>
+
+        <div class="skill-name">
+            {{ assessment_percentage }}%
+        </div>
+
+        <progress value="{{ assessment_percentage }}" max="100"></progress>
+            <p>{{ assessment_percentage }}%</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🏆 Overall Skill Score</h2>
+
+        <div class="overall">
+            {{ "%.1f"|format(overall_score) }}%
+        </div>
+
+        <p class="center">
+            Your overall score is calculated from your
+            technical skills and assessment performance.
+        </p>
+
+    </div>
+
+
+    <div class="center">
+
+        <a href="/dashboard" class="btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

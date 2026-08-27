@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Logout - TalentTrack AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f5ff;
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logout-card {
+            width: 430px;
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        }
+
+        .logout-icon {
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #eeeaff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+
+            color: #4036c8;
+        }
+
+        p {
+            color: #777;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 11px 22px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: #5146e5;
+            color: white;
+        }
+
+        .logout-btn:hover {
+            background: #4035c4;
+        }
+
+        .cancel-btn {
+            background: #eeeeee;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background: #dddddd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="logout-card">
+
+        <div class="logout-icon">
+            🚪
+        </div>
+
+        <h2>Logout</h2>
+
+        <p>
+            Are you sure you want to logout from
+            <strong>TalentTrack AI</strong>?
+        </p>
+
+        <div class="btn-container">
+
+            <a href="/logout-confirm" class="btn logout-btn">
+                Yes, Logout
+            </a>
+
+            <a href="/dashboard" class="btn cancel-btn">
+                Cancel
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

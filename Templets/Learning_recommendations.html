@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Recommendations - TalentTrack AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8f9ff);
+            color: #1f2937;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        /* Header */
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        /* Cards */
+
+        .card {
+            background: white;
+            padding: 28px;
+            margin-bottom: 22px;
+            border-radius: 18px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #312e81;
+            font-size: 22px;
+        }
+
+        /* Career */
+
+        .career-box {
+            text-align: center;
+            padding: 25px;
+            background: #eef2ff;
+            border-radius: 15px;
+            border: 1px solid #c7d2fe;
+        }
+
+        .career-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .career {
+            font-size: 30px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        /* Learning items */
+
+        .learning-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 17px;
+            margin: 13px 0;
+            background: #f8faff;
+            border-radius: 12px;
+            border-left: 5px solid #4f46e5;
+            transition: 0.2s;
+        }
+
+        .learning-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.10);
+        }
+
+        .number {
+            min-width: 34px;
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #4f46e5;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .learning-text {
+            padding-top: 7px;
+            font-size: 16px;
+        }
+
+        /* Guidance */
+
+        .guidance {
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            padding: 18px;
+            border-radius: 12px;
+            line-height: 1.7;
+        }
+
+        /* Empty */
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: #4f46e5;
+            padding: 12px 22px;
+            border-radius: 10px;
+            margin: 5px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #3730a3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            .header {
+                padding: 25px 15px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .career {
+                font-size: 24px;
+            }
+
+            .learning-item {
+                gap: 10px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>📚 Learning Recommendations</h1>
+
+        <p>
+            Personalized learning guidance powered by TalentTrack AI
+        </p>
+
+    </div>
+
+
+    <!-- Recommended Career -->
+
+    <div class="card">
+
+        <h2>🎯 Your Recommended Career</h2>
+
+        <div class="career-box">
+
+            <div class="career-label">
+                Based on your profile and skill assessment
+            </div>
+
+            <div class="career">
+                {{ prediction }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Learning Path -->
+
+    <div class="card">
+
+        <h2>🚀 Recommended Learning Path</h2>
+
+        <p>
+            Follow these learning steps to improve your skills
+            and prepare yourself for your recommended career.
+        </p>
+
+
+        {% if learning_path %}
+
+            {% for recommendation in learning_path %}
+
+                <div class="learning-item">
+
+                    <div class="number">
+                        {{ loop.index }}
+                    </div>
+
+                    <div class="learning-text">
+                        {{ recommendation }}
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+
+                <p>
+                    🎉 No specific learning recommendations are
+                    available at the moment.
+                </p>
+
+                <p>
+                    Continue practicing your existing skills and
+                    build real-world projects.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Career Guidance -->
+
+    <div class="card">
+
+        <h2>💡 Career Guidance</h2>
+
+        <div class="guidance">
+
+            <strong>Recommended approach:</strong>
+
+            <p>
+                Start with the first skill in your learning path
+                and gradually move to the next one.
+                Practice what you learn through small projects,
+                assignments and real-world applications.
+            </p>
+
+            <p>
+                Consistent practice and project development can
+                help you become more confident and job-ready.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <div class="buttons">
+
+        <a href="/skill-gap" class="btn">
+            🎯 View Skill Gap
+        </a>
+
+        <a href="/dashboard" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
+```

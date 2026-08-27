@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Reports - TalentTrack AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #f4f6ff;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 22px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .career {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #4f46e5;
+            margin-top: 15px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .score-box {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .score {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: #f5f3ff;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .score h3 {
+            margin: 0 0 10px;
+            color: #555;
+        }
+
+        .score-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 9px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+
+        .missing {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .learning-list {
+            padding-left: 25px;
+        }
+
+        .learning-list li {
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        .overall {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .btn-area {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #4f46e5;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 8px;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #3730a3;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>📊 Career Report</h1>
+
+        <p>
+            TalentTrack AI Career Analysis Report
+        </p>
+
+    </div>
+
+
+    <!-- Career Prediction -->
+
+    <div class="card">
+
+        <h2>🎯 Recommended Career</h2>
+
+        <div class="career">
+            {{ prediction }}
+        </div>
+
+    </div>
+
+
+    <!-- Overall Score -->
+
+    <div class="card">
+
+        <h2>🏆 Overall Skill Score</h2>
+
+        <div class="overall">
+            {{ "%.1f"|format(overall_score) }}%
+        </div>
+
+        <p style="text-align:center;">
+            Your overall score is calculated using your
+            technical skills and assessment performance.
+        </p>
+
+    </div>
+
+
+    <!-- Skill Scores -->
+
+    <div class="card">
+
+        <h2>💻 Technical Skill Scores</h2>
+
+        <div class="score-box">
+
+            <div class="score">
+
+                <h3>Python</h3>
+
+                <div class="score-value">
+                    {{ "%.1f"|format(python_skill) }}%
+                </div>
+
+            </div>
+
+
+            <div class="score">
+
+                <h3>Java</h3>
+
+                <div class="score-value">
+                    {{ "%.1f"|format(java_skill) }}%
+                </div>
+
+            </div>
+
+
+            <div class="score">
+
+                <h3>SQL</h3>
+
+                <div class="score-value">
+                    {{ "%.1f"|format(sql_skill) }}%
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Assessment -->
+
+    <div class="card">
+
+        <h2>📝 Skill Assessment</h2>
+
+        <div class="score">
+
+            <h3>Assessment Score</h3>
+
+            <div class="score-value">
+                {{ "%.1f"|format(assessment_percentage) }}%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Current Skills -->
+
+    <div class="card">
+
+        <h2>✅ Current Skills</h2>
+
+        {% if current_skills %}
+
+            {% for skill in current_skills %}
+
+                <span class="skill">
+                    {{ skill }}
+                </span>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No skills have reached the required level yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Missing Skills -->
+
+    <div class="card">
+
+        <h2>⚠️ Skills to Improve</h2>
+
+        {% if missing_skills %}
+
+            {% for skill in missing_skills %}
+
+                <span class="skill missing">
+                    {{ skill }}
+                </span>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                🎉 Excellent! No major skill gaps found.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Learning Path -->
+
+    <div class="card">
+
+        <h2>🚀 Recommended Learning Path</h2>
+
+        {% if learning_path %}
+
+            <ol class="learning-list">
+
+                {% for item in learning_path %}
+
+                    <li>
+                        {{ item }}
+                    </li>
+
+                {% endfor %}
+
+            </ol>
+
+        {% else %}
+
+            <p>
+                Continue improving your technical skills
+                and build real-world projects.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="btn-area">
+
+        <a href="/dashboard" class="btn">
+            ← Back to Dashboard
+        </a>
+
+        <a href="/skill-gap" class="btn">
+            📋 View Skill Gap
+        </a>
+
+        <a href="/learning-recommendations" class="btn">
+            📚 Learning Recommendations
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
